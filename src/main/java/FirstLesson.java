@@ -5,17 +5,17 @@ import java.io.FilenameFilter;
 public class FirstLesson {
 
     public static void main(String[] args) {
-
-        File directories = new File("folder1/folder2/folder3");
+        String path = "folder1/folder2/folder3";
+        File directories = new File(path);
+        directories.mkdirs();
         try {
-            directories.mkdirs();
             File file;
             for (int i=0; i<15; i++){
                 if (i%3 == 0){
-                    file = new File("folder1/folder2/folder3/A"+i);
+                    file = new File(path+i+".txt");
                     file.createNewFile();
                 }else{
-                    file = new File("folder1/folder2/folder3/file"+i);
+                    file = new File(path+i+".txt");
                     file.createNewFile();
                 }
             }
@@ -23,8 +23,7 @@ public class FirstLesson {
             e.getMessage();
         }
 
-
-        File folder3 = new File("folder1/folder2/folder3");
+        File folder3 = new File(path);
         File[] listOfFilesFolder3 = folder3.listFiles((dir, name) -> name.startsWith("A"));
         for (File folder : listOfFilesFolder3){
             System.out.println(folder.getAbsolutePath());
